@@ -1,0 +1,20 @@
+{
+    "name": "onetab-notion",
+    "version": "1.0.0",
+    "description": "",
+    "main": "background.js",
+    "scripts": {
+        "build": "rimraf dist && webpack --mode production"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@types/chrome": "^0.0.242",
+        "copy-webpack-plugin": "^11.0.0",
+        "rimraf": "^5.0.1",
+        "ts-loader": "^9.4.4",
+        "typescript": "^5.1.6",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4"
+    }
+}

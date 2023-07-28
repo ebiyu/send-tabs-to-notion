@@ -1,0 +1,21 @@
+{
+    "name": "Ontab for Notion",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "description": "Sample Chrome Extension",
+    "permissions": [
+        "tabs"
+    ],
+    "browser_action": {
+        "default_icon": {
+            "16": "icon.png"
+        },
+        "default_title": "Send tabs to Notion"
+    },
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ],
+        "persistent": false
+    }
+}
