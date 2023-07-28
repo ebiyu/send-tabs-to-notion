@@ -18,6 +18,6 @@ NOTION_API_KEY=secret_.....
 NOTION_PAGE_ID=.....
 ```
 
-4. `yarn build`
+4. `yarn && yarn build`
 5. `chrome://extensions` にアクセスし、"Load unpacked" から `dist` を追加
 
