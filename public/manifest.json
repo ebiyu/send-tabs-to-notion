@@ -1,8 +1,8 @@
 {
-    "name": "Ontab for Notion",
+    "name": "Send tabs to Notion",
     "version": "1.0.0",
     "manifest_version": 3,
-    "description": "Sample Chrome Extension",
+    "description": "Send tabs to Notion",
     "permissions": [
         "tabs",
         "storage"
