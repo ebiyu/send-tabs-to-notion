@@ -1,6 +1,6 @@
-# onetab-notion
+# Send tabs to Notion
 
-OneTabの保存先をNotionにしたものです。
+Chrome拡張のOneTabの保存先をNotionにしたものです。
 
 ## requiment
 
