@@ -12,12 +12,14 @@
     "dependencies": {
         "@notionhq/client": "^2.2.9",
         "@types/chrome": "^0.0.242",
+        "@types/webextension-polyfill": "^0.10.1",
         "copy-webpack-plugin": "^11.0.0",
         "date-fns": "^2.30.0",
         "dotenv-webpack": "^8.0.1",
         "rimraf": "^5.0.1",
         "ts-loader": "^9.4.4",
         "typescript": "^5.1.6",
+        "webextension-polyfill": "^0.10.0",
         "webpack": "^5.88.2",
         "webpack-cli": "^5.1.4"
     }

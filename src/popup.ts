@@ -1,14 +1,15 @@
-console.log('popup.ts')
+import browser from "webextension-polyfill";
+
+console.log("popup.ts");
 
 document.getElementById("sendAllTabs")!.addEventListener("click", () => {
-    chrome.runtime.sendMessage({}, function (response) {
-        if (response.success) {
+    (async () => {
+        const res = await browser.runtime.sendMessage({});
+        if (res.success) {
             window.close();
         } else {
             window.alert("Failed to send all tabs");
             window.close();
         }
-    })
+    })();
 });
-
-
