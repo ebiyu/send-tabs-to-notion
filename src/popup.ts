@@ -2,7 +2,10 @@ import browser from "webextension-polyfill";
 
 console.log("popup.ts");
 
+const spinnerBg = document.getElementById("spinnerBg")!;
+
 document.getElementById("sendAllTabs")!.addEventListener("click", () => {
+    spinnerBg.style.display = "flex";
     (async () => {
         // check storage
         const { note, token } = await browser.storage.local.get([
@@ -34,11 +37,10 @@ document.getElementById("sendAllTabs")!.addEventListener("click", () => {
         }
 
         const res = await browser.runtime.sendMessage({});
-        if (res.success) {
-            window.close();
-        } else {
+        if (!res.success) {
             window.alert("Failed to send all tabs");
-            window.close();
         }
-    })();
+    })().finally(() => {
+        window.close();
+    });
 });
