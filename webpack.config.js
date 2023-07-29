@@ -1,6 +1,5 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
 
 module.exports = {
     // srcディレクトリ配下のbackground.tsをdist/js配下へ移送する
@@ -31,6 +30,5 @@ module.exports = {
     // publicディレクトリに配置する静的リソースやmanifest.json等を移送する
     plugins: [
         new CopyWebpackPlugin({ patterns: [{ from: "public", to: "." }] }),
-        new Dotenv(),
     ],
 };

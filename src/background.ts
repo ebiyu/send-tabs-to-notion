@@ -2,13 +2,16 @@ import { Client } from "@notionhq/client";
 import { format } from "date-fns";
 import browser from "webextension-polyfill";
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
-
 const sleep = (msec: number) =>
     new Promise((resolve) => setTimeout(resolve, msec));
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     (async () => {
+        const { note, token } = await browser.storage.local.get([
+            "note",
+            "token",
+        ]);
+        const notion = new Client({ auth: token });
         const tabs = await browser.tabs.query({
             lastFocusedWindow: true,
             pinned: false,
@@ -26,7 +29,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         // get page content
         const blockList = await notion.blocks.children.list({
-            block_id: process.env.NOTION_PAGE_ID!,
+            block_id: note,
             page_size: 50,
         });
 
@@ -40,7 +43,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (!target) {
             console.log("Creating today's block");
             await notion.blocks.children.append({
-                block_id: process.env.NOTION_PAGE_ID!,
+                block_id: note,
                 after: blockList.results[0].id,
                 children: [
                     {
@@ -98,7 +101,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
 
         await notion.blocks.children.append({
-            block_id: process.env.NOTION_PAGE_ID!,
+            block_id: note,
             after: createdTarget.id,
             // @ts-ignore
             children: blocks,
