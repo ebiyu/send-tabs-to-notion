@@ -6,10 +6,19 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const sleep = (msec: number) =>
     new Promise((resolve) => setTimeout(resolve, msec));
 
-chrome.action.onClicked.addListener(() => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     chrome.tabs.query(
         { lastFocusedWindow: true, pinned: false },
         function (tabs) {
+            const filteredTabs = tabs.filter((tab) => {
+                if (!tab.url) return false;
+                if (tab.url.startsWith("chrome://")) return false;
+                if (tab.url.startsWith("chrome-extension://")) return false;
+                if (tab.url.startsWith("http://localhost")) return false;
+                if (tab.url.startsWith("https://localhost")) return false;
+                return true;
+            });
+
             const dateString = format(new Date(), "yyyy-MM-dd");
 
             (async () => {
@@ -64,7 +73,7 @@ chrome.action.onClicked.addListener(() => {
                     return;
                 }
 
-                const blocks = tabs.map((tab) => {
+                const blocks = filteredTabs.map((tab) => {
                     return {
                         object: "block",
                         type: "bulleted_list_item",
@@ -93,10 +102,16 @@ chrome.action.onClicked.addListener(() => {
                 console.log("Complete: added blocks to Notion");
 
                 chrome.tabs.remove(
-                    tabs.flatMap((tab) => tab.id ?? []),
+                    filteredTabs.flatMap((tab) => tab.id ?? []),
                     () => {}
                 );
-            })();
+
+                sendResponse({ success: true });
+            })().catch((e) => {
+                console.error(e);
+                sendResponse({ success: false, error: e });
+            });
         }
     );
+    return true;
 });

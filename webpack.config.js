@@ -7,6 +7,7 @@ module.exports = {
     mode: process.env.NODE_ENV || "development",
     entry: {
         background: path.join(__dirname, "src/background.ts"),
+        popup: path.join(__dirname, "src/popup.ts"),
     },
     output: {
         path: path.join(__dirname, "dist"),

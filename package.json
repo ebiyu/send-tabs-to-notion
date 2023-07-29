@@ -4,7 +4,8 @@
     "description": "",
     "main": "background.js",
     "scripts": {
-        "build": "rimraf dist && webpack --mode production"
+        "build": "rimraf dist && webpack --mode production",
+        "watch": "rimraf dist && webpack --mode production --watch"
     },
     "author": "",
     "license": "MIT",

@@ -13,7 +13,8 @@
         "default_icon": {
             "16": "icon.png"
         },
-        "default_title": "Send tabs to Notion"
+        "default_title": "Send tabs to Notion",
+        "default_popup": "popup.html"
     },
     "background": {
         "service_worker": "background.js"
