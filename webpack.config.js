@@ -25,6 +25,9 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".js"],
     },
+    optimization: {
+        minimize: false,
+    },
     // publicディレクトリに配置する静的リソースやmanifest.json等を移送する
     plugins: [
         new CopyWebpackPlugin({ patterns: [{ from: "public", to: "." }] }),
