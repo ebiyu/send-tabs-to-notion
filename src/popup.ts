@@ -10,17 +10,22 @@ document.getElementById('sendAllTabs')!.addEventListener('click', () => {
     // check storage
     const { note, token } = await browser.storage.local.get(['note', 'token']);
     if (!token || !note) {
-        alert('Please set token and note id in options page');
-        chrome.tabs.create({
-            url: 'chrome-extension://' + chrome.runtime.id + '/options.html',
-        });
-        return;
+      alert('Please set token and note id in options page');
+      chrome.tabs.create({
+        url: 'chrome-extension://' + chrome.runtime.id + '/options.html',
+      });
+      return;
     }
 
     const res = await browser.runtime.sendMessage({});
     if (!res.success) {
       window.alert('Failed to send all tabs');
+      return;
     }
+    await browser.tabs.create({
+      url: 'https://notion.so/' + note,
+      pinned: true,
+    });
   })().finally(() => {
     window.close();
   });
