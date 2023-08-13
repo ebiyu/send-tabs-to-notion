@@ -11,35 +11,26 @@
   </head>
   <body>
     <div class="container p-2">
-      <form action="" id="form">
-        <div class="row py-2">
-          <labal class="col-2 col-form-label" for="apiTokenInput">
-            Notion API Token
-          </labal>
-          <div class="col-10">
-            <input
-              type="textbox"
-              id="apiTokenInput"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <div class="row py-2">
-          <labal class="col-2 col-form-label" for="pageUrlInput">
-            Notion Page URL
-          </labal>
-          <div class="col-10">
-            <input
-              type="textbox"
-              id="pageUrlInput"
-              class="form-control"
-            />
-          </div>
-        </div>
+      <div id="loggedOutSection" class="d-none">
         <div class="py-2">
-          <button id="saveButton" class="btn btn-success">保存</button>
+          <button id="loginButton" class="btn btn-success">ログイン</button>
         </div>
-      </form>
+      </div>
+      <div id="loggedInSection" class="d-none">
+        <form action="" id="form">
+          <div class="row py-2">
+            <labal class="col-2 col-form-label" for="pageUrlInput">
+              Notion Page URL
+            </labal>
+            <div class="col-10">
+              <input type="textbox" id="pageUrlInput" class="form-control" />
+            </div>
+          </div>
+          <div class="py-2">
+            <button id="saveButton" class="btn btn-success">保存</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script src="options.js"></script>
